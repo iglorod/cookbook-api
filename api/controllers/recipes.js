@@ -4,6 +4,8 @@ const Recipe = require('../models/recipe');
 
 const createRecipe = (req, res, func) => {
     const image = req.file ? req.file.location : req.body.image;
+    console.log(req.body)
+    const divider = req.body.divider + ',';
 
     const recipeObj = {
         _id: new mongoose.Types.ObjectId(),
@@ -15,8 +17,8 @@ const createRecipe = (req, res, func) => {
         totalTime: req.body.totalTime,
         image: image,
         date: req.body.date,
-        ingredients: req.body.ingredients.split(','),
-        instructions: req.body.instructions.split(','),
+        ingredients: req.body.ingredients.split(divider),
+        instructions: req.body.instructions.split(divider),
     }
 
     const prev = req.body.prevRecipeId;
